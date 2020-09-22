@@ -17,7 +17,6 @@
                 border
                 class="table"
                 header-cell-class-name="table-header"
-                @selection-change="handleSelectionChange"
             >
                 <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
                 <el-table-column prop="device_no" label="设备编号IMEI"></el-table-column>
@@ -33,6 +32,10 @@
                             icon="el-icon-edit"
                             @click="handleEdit(scope.$index, scope.row)"
                         >编辑</el-button>
+                       <el-button
+                           type="text"
+                           @click= "$router.push({path: 'device-detail',query:{id:scope.row.id}})"
+                       >详情</el-button>
                         <el-button
                             type="text"
                             icon="el-icon-delete"
@@ -123,10 +126,6 @@ export default {
                     this.tableData.splice(index, 1);
                 })
                 .catch(() => {});
-        },
-        // 多选操作
-        handleSelectionChange(val) {
-            this.multipleSelection = val;
         },
         // 编辑操作
         handleEdit(index, row) {

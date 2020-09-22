@@ -16,11 +16,9 @@
                 :data="tableData"
                 border
                 class="table"
-                ref="multipleTable"
                 header-cell-class-name="table-header"
                 @selection-change="handleSelectionChange"
             >
-                <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
                 <el-table-column prop="device_no" label="设备编号IMEI"></el-table-column>
                 <el-table-column prop="sn" label="SN"></el-table-column>
@@ -89,7 +87,6 @@ export default {
                 page_size: 10
             },
             tableData: [],
-            multipleSelection: [],
             delList: [],
             editVisible: false,
             pageTotal: 0,
@@ -177,11 +174,5 @@ export default {
 }
 .mr10 {
     margin-right: 10px;
-}
-.table-td-thumb {
-    display: block;
-    margin: auto;
-    width: 40px;
-    height: 40px;
 }
 </style>

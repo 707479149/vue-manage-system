@@ -14,4 +14,12 @@ export const UpdateDevice = data => {
         method: 'POST',
         data: data
     });
+};
+
+export const GetDeviceDetail = query => {
+    return request({
+        url: 'http://localhost:10004/v1/admin/device/detail',
+        method: 'get',
+        params: query
+    })
 }

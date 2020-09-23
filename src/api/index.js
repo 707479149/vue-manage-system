@@ -8,6 +8,14 @@ export const fetchData = query => {
     });
 };
 
+export const AddDevice = data => {
+    return request({
+        url: 'http://localhost:10004/v1/admin/device/add',
+        method: 'POST',
+        data: data
+    });
+};
+
 export const UpdateDevice = data => {
     return request({
         url: 'http://localhost:10004/v1/admin/device/update',

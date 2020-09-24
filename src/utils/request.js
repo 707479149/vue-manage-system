@@ -1,7 +1,12 @@
 import axios from 'axios';
+import config from '../config'
 
+const host = process.env.NODE_ENV == "development" ? config.api_host_dev : config.api_host_prod
+
+console.log("host:", host)
 const service = axios.create({
-    timeout: 5000
+    timeout: 5000,
+    baseURL: host
 });
 
 service.interceptors.request.use(

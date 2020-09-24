@@ -11,7 +11,7 @@
             <div class="handle-box">
                 <el-input v-model="query.keyword" placeholder="IMEI/SN/备注" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
-                <el-button type="primary" icon="el-icon-search" @click="handleAdd">添加</el-button>
+                <el-button type="primary"  @click="handleAdd">添加</el-button>
             </div>
             <el-table
                     :data="tableData"

@@ -2,7 +2,7 @@ import request from '../utils/request';
 
 export const fetchData = query => {
     return request({
-        url: 'http://localhost:10004/v1/admin/device/list',
+        url: '/device/list',
         method: 'get',
         params: query
     });
@@ -10,7 +10,7 @@ export const fetchData = query => {
 
 export const AddDevice = data => {
     return request({
-        url: 'http://localhost:10004/v1/admin/device/add',
+        url: '/device/add',
         method: 'POST',
         data: data
     });
@@ -18,7 +18,7 @@ export const AddDevice = data => {
 
 export const UpdateDevice = data => {
     return request({
-        url: 'http://localhost:10004/v1/admin/device/update',
+        url: '/device/update',
         method: 'POST',
         data: data
     });
@@ -26,7 +26,7 @@ export const UpdateDevice = data => {
 
 export const GetDeviceDetail = query => {
     return request({
-        url: 'http://localhost:10004/v1/admin/device/detail',
+        url: '/device/detail',
         method: 'get',
         params: query
     })

@@ -30,6 +30,11 @@ export default new Router({
                     meta: { title: '设备详情' }
                 },
                 {
+                    path: '/order-list',
+                    component: () => import( '../components/page/OrderList.vue'),
+                    meta: { title: '订单列表' }
+                },
+                {
                     path: '/tabs',
                     component: () => import('../components/page/Tabs.vue'),
                     meta: { title: 'tab选项卡' }

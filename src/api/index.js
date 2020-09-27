@@ -31,3 +31,11 @@ export const GetDeviceDetail = query => {
         params: query
     })
 }
+
+export const getOrderList = query => {
+    return request({
+        url: '/order/list',
+        method: 'get',
+        params: query
+    });
+};

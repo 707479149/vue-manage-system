@@ -66,6 +66,11 @@ export default {
                     index: 'device-list',
                     title: '设备列表'
                 },
+              {
+                icon: 'el-icon-lx-cascades',
+                index: 'order-list',
+                title: '订单列表'
+              },
                 {
                     icon: 'el-icon-lx-copy',
                     index: 'tabs',

@@ -16,7 +16,16 @@
           </div>
           <div class="device-info-report">最新一次上报时间：<span>{{formatDate(form.last_report_time)}}</span></div>
           <div class="device-info-report">最新一次上报内容：<span>{{form.report_content}}</span></div>
-            <el-table
+          <div class="handle-box">
+            <el-button type="primary"  @click="QrCodeDown">下载二维码</el-button>
+            <el-button type="primary"  @click="handleAdd">下发启动固件升级</el-button>
+            <el-button type="primary"  @click="handleAdd">下发应用固件升级</el-button>
+            <el-button type="primary"  @click="handleAdd">设置UTC</el-button>
+            <el-button type="primary"  @click="handleAdd">重启4G</el-button>
+            <el-button type="primary"  @click="handleAdd">重启MCU</el-button>
+            <el-button type="primary"  @click="handleAdd">设备播放语音</el-button>
+          </div>
+          <el-table
                     :data="form.port_detail"
                     border
                     class="table"
@@ -27,6 +36,10 @@
                 <el-table-column prop="report_content" label="最新上报内容"></el-table-column>
                 <el-table-column prop="last_report_time"  :formatter="formatRowDate"  label="最后一次上报时间" width="100"></el-table-column>
                 <el-table-column label="操作" width="180" align="center">
+                  <template slot-scope="scope">
+                    <el-button type="text" @click="">打开通道</el-button>
+                    <el-button type="text" @click= "">关闭通道</el-button>
+                  </template>
                 </el-table-column>
             </el-table>
         </div>
@@ -35,6 +48,7 @@
 
 <script>
     import { GetDeviceDetail } from '../../api/index';
+    import config from "@/config";
     export default {
         data() {
             return {
@@ -78,12 +92,20 @@
               let m = date.getMinutes()  < 10 ? '0' + date.getMinutes() + ':' : date.getMinutes() + ':';
               let s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
               return Y + M + D + h + m + s;
-            }
+            },
+
+          QrCodeDown() {
+            let host = process.env.NODE_ENV == "development" ? config.api_host_dev : config.api_host_prod
+            window.location.href = host + "/device/qr-code?id=" + this.$route.query.id;
+          }
 
         }
     }
 </script>
 <style>
+.handle-box {
+  margin-bottom: 20px;
+}
     .device-info {
         display: flex;
         align-items: center;

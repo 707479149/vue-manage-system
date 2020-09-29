@@ -37,12 +37,6 @@
                                 type="text"
                                 @click= "$router.push({path: 'device-detail',query:{id:scope.row.id}})"
                         >详情</el-button>
-                        <el-button
-                                type="text"
-                                icon="el-icon-delete"
-                                class="red"
-                                @click="handleDelete(scope.$index, scope.row)"
-                        >删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -50,8 +44,8 @@
                 <el-pagination
                         background
                         layout="total, prev, pager, next"
-                        :current-page="query.pageIndex"
-                        :page-size="query.pageSize"
+                        :current-page="query.page_index"
+                        :page-size="query.page_size"
                         :total="pageTotal"
                         @current-change="handlePageChange"
                 ></el-pagination>
@@ -78,9 +72,6 @@
         </el-dialog>
         <el-dialog title="添加"  :visible.sync="addVisible"  width="35%">
             <el-form ref="form" :model="addForm" label-width="70px">
-                <el-form-item label="设备编号">
-                    <el-input v-model="addForm.device_no"></el-input>
-                </el-form-item>
                 <el-form-item label="SN">
                     <el-input v-model="addForm.sn"></el-input>
                 </el-form-item>

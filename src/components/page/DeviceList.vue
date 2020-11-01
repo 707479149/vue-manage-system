@@ -55,9 +55,9 @@
         <!-- 编辑弹出框 -->
         <el-dialog title="编辑" :visible.sync="editVisible" width="35%">
             <el-form ref="form" :model="form" label-width="70px">
-                <el-form-item label="设备编号">
-                    <el-input v-model="form.device_no"></el-input>
-                </el-form-item>
+<!--                <el-form-item label="设备编号">-->
+<!--                    <el-input v-model="form.device_no"></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="SN">
                     <el-input v-model="form.sn"></el-input>
                 </el-form-item>
@@ -75,15 +75,15 @@
                 <el-form-item label="SN">
                     <el-input v-model="addForm.sn"></el-input>
                 </el-form-item>
-                <el-form-item label="状态">
-                    <el-input v-model.number ="addForm.state"></el-input>
-                </el-form-item>
-                <el-form-item label="单价">
-                    <el-input v-model.number ="addForm.cal_fee_per"></el-input>
-                </el-form-item>
-                <el-form-item label="端口数量">
-                    <el-input v-model.number ="addForm.total_ports"></el-input>
-                </el-form-item>
+<!--                <el-form-item label="状态">-->
+<!--                    <el-input v-model.number ="addForm.state"></el-input>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="单价">-->
+<!--                    <el-input v-model.number ="addForm.cal_fee_per"></el-input>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="端口数量">-->
+<!--                    <el-input v-model.number ="addForm.total_ports"></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="备注">
                     <el-input v-model="addForm.remark"></el-input>
                 </el-form-item>
@@ -165,8 +165,11 @@
             saveEdit() {
                 this.editVisible = false;
                 UpdateDevice(this.form).then(res => {
-                    console.log(res)
-                    this.$message.success(`修改第 ${this.idx + 1} 行成功`);
+                  if (res.errorcode != 0) {
+                    this.$message.error(res.data)
+                  } else {
+                    this.$message.success(`成功`);
+                  }
                     this.$set(this.tableData, this.idx, this.form);
                 })
             },
@@ -178,9 +181,11 @@
             {
                 this.addVisible = false;
                 AddDevice(this.addForm).then(res => {
-                    console.log(res)
-                    this.$message.success(`添加成功`);
-                    this.getData()
+                  if (res.errorcode != 0) {
+                    this.$message.error(res.data)
+                  } else {
+                    this.$message.success(`成功`);
+                  }
                 })
             },
             // 分页导航

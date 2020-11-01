@@ -18,12 +18,12 @@
           <div class="device-info-report">最新一次上报内容：<span>{{form.report_content}}</span></div>
           <div class="handle-box">
             <el-button type="primary"  @click="QrCodeDown">下载二维码</el-button>
-            <el-button type="primary"  @click="handleAdd">下发启动固件升级</el-button>
-            <el-button type="primary"  @click="handleAdd">下发应用固件升级</el-button>
-            <el-button type="primary"  @click="handleAdd">设置UTC</el-button>
-            <el-button type="primary"  @click="handleAdd">重启4G</el-button>
-            <el-button type="primary"  @click="handleAdd">重启MCU</el-button>
-            <el-button type="primary"  @click="handleAdd">设备播放语音</el-button>
+<!--            <el-button type="primary"  @click="handleAdd">下发启动固件升级</el-button>-->
+<!--            <el-button type="primary"  @click="handleAdd">下发应用固件升级</el-button>-->
+<!--            <el-button type="primary"  @click="handleAdd">设置UTC</el-button>-->
+<!--            <el-button type="primary"  @click="handleAdd">重启4G</el-button>-->
+<!--            <el-button type="primary"  @click="handleAdd">重启MCU</el-button>-->
+<!--            <el-button type="primary"  @click="handleAdd">设备播放语音</el-button>-->
           </div>
           <el-table
                     :data="form.port_detail"
@@ -37,8 +37,8 @@
                 <el-table-column prop="last_report_time"  :formatter="formatRowDate"  label="最后一次上报时间" width="100"></el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                   <template slot-scope="scope">
-                    <el-button type="text" @click="">打开通道</el-button>
-                    <el-button type="text" @click= "">关闭通道</el-button>
+                    <el-button type="text" @click="OpenChannel(scope.row.port_seq)">打开通道</el-button>
+                    <el-button type="text" @click= "CloseChannel(scope.row.port_seq)">关闭通道</el-button>
                   </template>
                 </el-table-column>
             </el-table>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-    import { GetDeviceDetail } from '../../api/index';
+    import { GetDeviceDetail,DeviceOp } from '../../api/index';
     import config from "@/config";
     export default {
         data() {
@@ -97,8 +97,27 @@
           QrCodeDown() {
             let host = process.env.NODE_ENV == "development" ? config.api_host_dev : config.api_host_prod
             window.location.href = host + "/device/qr-code?id=" + this.$route.query.id;
+          },
+          OpenChannel(port_seq)
+          {
+            DeviceOp({sn: this.form.sn, channel:port_seq, op_type: 5}).then(res => {
+              if (res.errorcode != 0) {
+                this.$message.error(res.data)
+              } else {
+                this.$message.success(`成功`);
+              }
+            });
+          },
+          CloseChannel(port_seq)
+          {
+            DeviceOp({sn: this.form.sn, channel:port_seq, op_type: 6}).then(res => {
+              if (res.errorcode != 0) {
+                this.$message.error(res.data)
+              } else {
+                this.$message.success(`成功`);
+              }
+            });
           }
-
         }
     }
 </script>

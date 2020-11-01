@@ -40,3 +40,11 @@ export const getOrderList = query => {
     });
 };
 
+export const DeviceOp = data => {
+    return request({
+        url: '/device/op',
+        method: 'post',
+        data: data
+    });
+}
+

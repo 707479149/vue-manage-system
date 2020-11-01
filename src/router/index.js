@@ -14,11 +14,11 @@ export default new Router({
             component: () => import( '../components/common/Home.vue'),
             meta: { title: '自述文件' },
             children: [
-                {
-                    path: '/dashboard',
-                    component: () => import('../components/page/Dashboard.vue'),
-                    meta: { title: '系统首页' }
-                },
+                // {
+                //     path: '/dashboard',
+                //     component: () => import('../components/page/Dashboard.vue'),
+                //     meta: { title: '系统首页' }
+                // },
                 {
                     path: '/device-list',
                     component: () => import( '../components/page/DeviceList.vue'),
@@ -29,11 +29,11 @@ export default new Router({
                     component: () => import( '../components/page/DeviceDetail.vue'),
                     meta: { title: '设备详情' }
                 },
-                {
-                    path: '/order-list',
-                    component: () => import( '../components/page/OrderList.vue'),
-                    meta: { title: '订单列表' }
-                },
+                // {
+                //     path: '/order-list',
+                //     component: () => import( '../components/page/OrderList.vue'),
+                //     meta: { title: '订单列表' }
+                // },
                 {
                     path: '/tabs',
                     component: () => import('../components/page/Tabs.vue'),

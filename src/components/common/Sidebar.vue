@@ -56,21 +56,21 @@ export default {
         return {
             collapse: false,
             items: [
-                {
-                    icon: 'el-icon-lx-home',
-                    index: 'dashboard',
-                    title: '系统首页'
-                },
+                // {
+                //     icon: 'el-icon-lx-home',
+                //     index: 'dashboard',
+                //     title: '系统首页'
+                // },
                 {
                     icon: 'el-icon-lx-cascades',
                     index: 'device-list',
                     title: '设备列表'
                 },
-              {
-                icon: 'el-icon-lx-cascades',
-                index: 'order-list',
-                title: '订单列表'
-              },
+              // {
+              //   icon: 'el-icon-lx-cascades',
+              //   index: 'order-list',
+              //   title: '订单列表'
+              // },
                 {
                     icon: 'el-icon-lx-copy',
                     index: 'tabs',
